@@ -57,7 +57,7 @@ func (b *Budget) AddItem(description string, price float32) error {
 		return errDoesNotFitBudget
 	}
 	newItem := Item{Description: description, Price: price}
-	_ = append(b.Items, newItem)
+	b.Items = append(b.Items, newItem)
 	return nil
 }
 
@@ -65,7 +65,7 @@ func (b *Budget) AddItem(description string, price float32) error {
 func (b *Budget) RemoveItem(description string) {
 	for i := range b.Items {
 		if b.Items[i].Description == description {
-			_ = append(b.Items[:i], b.Items[i+1:]...)
+			b.Items = append(b.Items[:i], b.Items[i+1:]...)
 			break
 		}
 	}
